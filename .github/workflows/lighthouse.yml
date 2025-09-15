@@ -28,11 +28,16 @@ jobs:
           npx vite preview --port 4173 --strictPort &
           sleep 3
 
-      - name: Wait for Pages deploy
-        uses: jakepartusch/wait-for-netlify-action@v1.4
-        with:
-          site_url: https://the-wise-men.github.io/sq2ft-calculators/
-          max_timeout: 180000
+      - name: Wait for GitHub Pages (deployed site)
+        run: |
+          URL=https://the-wise-men.github.io/sq2ft-calculators/
+          echo "Waiting for $URL to return 200..."
+          for i in {1..60}; do
+            CODE=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
+            if [ "$CODE" = "200" ]; then echo "Site is up"; break; fi
+            echo "Got $CODE, retrying in 5s..."; sleep 5;
+            if [ $i -eq 60 ]; then echo "Timed out waiting for $URL" >&2; exit 1; fi
+          done
 
       - name: Install Lighthouse CI
         run: |
