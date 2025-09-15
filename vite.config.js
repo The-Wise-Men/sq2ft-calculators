@@ -60,12 +60,7 @@ export default defineConfig({
     sourcemap: true,
     rollupOptions: {
       input: {
-        main: 'index.html',
-        tile: 'tile-calculator.html',
-        carpet: 'carpet-calculator.html',
-        hardwood: 'hardwood-calculator.html',
-        baseboard: 'baseboard-calculator.html',
-        subfloor: 'subfloor-calculator.html'
+        main: 'index.html'
       }
     }
   },
