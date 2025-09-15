@@ -487,6 +487,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('load', ensurePillIcons);
 
     // Hybrid PJAX navigation for calculator pills + page-ready fade
+    // Disable PJAX in local dev to avoid stale DOM and caching confusion
+    const isLocalDev = location.origin.startsWith('http://localhost:');
+    if (isLocalDev) return;
     try {
         const docEl = document.documentElement;
 
