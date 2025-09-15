@@ -52,6 +52,7 @@ class TileCalculator {
 
     setResultValue(id, value, format = 'number') {
         const element = document.getElementById(id);
+        console.log(`Setting result for ${id}:`, { element: !!element, value, format });
         if (element) {
             let formattedValue = value;
             if (format === 'currency') {
@@ -62,6 +63,9 @@ class TileCalculator {
                 formattedValue = `${value.toFixed(2)}%`;
             }
             element.textContent = formattedValue;
+            console.log(`Updated ${id} to:`, formattedValue);
+        } else {
+            console.error(`Element not found for id: ${id}`);
         }
     }
 
