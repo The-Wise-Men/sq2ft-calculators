@@ -44,6 +44,7 @@ jobs:
       run: |
         cp tile-calculator.html carpet-calculator.html hardwood-calculator.html baseboard-calculator.html subfloor-calculator.html dist/
         cp tile-calculator.js carpet-calculator.js hardwood-calculator.js baseboard-calculator.js subfloor-calculator.js dist/
+        cp styles.css dist/
 
     - name: Setup Pages
       uses: actions/configure-pages@v4
