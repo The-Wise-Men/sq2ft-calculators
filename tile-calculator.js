@@ -88,6 +88,24 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Added listener to tile price');
     }
 
+    // Preset tile size buttons (e.g., 12x12, 12x24)
+    const presetButtons = document.querySelectorAll('.preset-btn');
+    if (presetButtons && presetButtons.length) {
+        presetButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const size = btn.getAttribute('data-size');
+                if (!size) return;
+                const [lenStr, widStr] = size.split('x');
+                const len = parseFloat(lenStr);
+                const wid = parseFloat(widStr);
+                if (tileLength && !Number.isNaN(len)) tileLength.value = String(len);
+                if (tileWidth && !Number.isNaN(wid)) tileWidth.value = String(wid);
+                calculate();
+            });
+        });
+    }
+
     // Set default values and calculate
     if (roomLength) roomLength.value = '10';
     if (roomWidth) roomWidth.value = '12';

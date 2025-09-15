@@ -45,7 +45,7 @@ jobs:
         cp tile-calculator.html carpet-calculator.html hardwood-calculator.html baseboard-calculator.html subfloor-calculator.html dist/
         cp tile-calculator.js carpet-calculator.js hardwood-calculator.js baseboard-calculator.js subfloor-calculator.js dist/
         cp styles.css dist/
-        cp about.html blog.html contact.html guides.html faq.html privacy.html terms.html advertisers.html dist/
+        cp about.html tips.html contact.html guides.html faq.html privacy.html terms.html advertisers.html dist/
 
     - name: Setup Pages
       uses: actions/configure-pages@v4
