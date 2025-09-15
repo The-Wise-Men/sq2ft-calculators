@@ -117,6 +117,8 @@ class TileCalculator {
     }
 
     calculate() {
+        console.log('Calculate method called');
+        
         const roomL = this.getInputValue('room-length');
         const roomW = this.getInputValue('room-width');
         const tileL = this.getInputValue('tile-length');
@@ -124,6 +126,8 @@ class TileCalculator {
         const waste = this.getInputValue('waste-factor', 10);
         const price = this.getInputValue('tile-price');
         const grout = this.getInputValue('grout-width', 3);
+
+        console.log('Input values:', { roomL, roomW, tileL, tileW, waste, price, grout });
 
         if (roomL <= 0 || roomW <= 0 || tileL <= 0 || tileW <= 0) {
             this.showError('Please enter valid dimensions');
@@ -177,6 +181,8 @@ class TileCalculator {
     }
 
     updateResults(results) {
+        console.log('UpdateResults called with:', results);
+        
         this.setResultValue('room-area', results.roomArea, 'integer');
         this.setResultValue('tiles-needed', results.baseTiles, 'integer');
         this.setResultValue('tiles-with-waste', results.tilesWithWaste, 'integer');
