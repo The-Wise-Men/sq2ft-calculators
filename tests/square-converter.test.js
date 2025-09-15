@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { SquareConverter } from '../src/square-converter.js'
+import { SquareConverter } from '../script.js'
 
 // Mock DOM elements
 const mockInput = {

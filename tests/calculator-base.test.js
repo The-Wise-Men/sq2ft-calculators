@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { CalculatorBase } from '../src/calculator-base.js'
+import { CalculatorBase } from '../calculator-base.js'
 
 // Mock DOM
 const mockInput = {
