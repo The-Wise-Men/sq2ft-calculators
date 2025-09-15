@@ -9,6 +9,25 @@ jobs:
   lhci:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies and build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Start local preview server
+        run: |
+          npx vite preview --port 4173 --strictPort &
+          sleep 3
+
       - name: Wait for Pages deploy
         uses: jakepartusch/wait-for-netlify-action@v1.4
         with:
@@ -39,6 +58,26 @@ jobs:
           lhci collect --url=https://the-wise-men.github.io/sq2ft-calculators/tile-calculator.html --numberOfRuns=1 --settings.emulatedFormFactor=desktop --settings.screenEmulation.mobile=false --settings.throttlingMethod=simulate --output=json --output-path=./lhr-tile-desktop.json
           lhci assert --config=lighthouserc.json
 
+      - name: Run LHCI local (homepage mobile)
+        run: |
+          lhci collect --url=http://localhost:4173/ --numberOfRuns=1 --settings.emulatedFormFactor=mobile --settings.screenEmulation.mobile=true --settings.throttlingMethod=simulate --output=json --output-path=./lhr-home-local.json
+          lhci assert --config=lighthouserc.json
+
+      - name: Run LHCI local (tile mobile)
+        run: |
+          lhci collect --url=http://localhost:4173/tile-calculator.html --numberOfRuns=1 --settings.emulatedFormFactor=mobile --settings.screenEmulation.mobile=true --settings.throttlingMethod=simulate --output=json --output-path=./lhr-tile-local.json
+          lhci assert --config=lighthouserc.json
+
+      - name: Run LHCI local (homepage desktop)
+        run: |
+          lhci collect --url=http://localhost:4173/ --numberOfRuns=1 --settings.emulatedFormFactor=desktop --settings.screenEmulation.mobile=false --settings.throttlingMethod=simulate --output=json --output-path=./lhr-home-desktop-local.json
+          lhci assert --config=lighthouserc.json
+
+      - name: Run LHCI local (tile desktop)
+        run: |
+          lhci collect --url=http://localhost:4173/tile-calculator.html --numberOfRuns=1 --settings.emulatedFormFactor=desktop --settings.screenEmulation.mobile=false --settings.throttlingMethod=simulate --output=json --output-path=./lhr-tile-desktop-local.json
+          lhci assert --config=lighthouserc.json
+
       - name: Upload reports
         uses: actions/upload-artifact@v4
         with:
@@ -48,8 +87,12 @@ jobs:
             lhr-tile.json
             lhr-home-desktop.json
             lhr-tile-desktop.json
+            lhr-home-local.json
+            lhr-tile-local.json
+            lhr-home-desktop-local.json
+            lhr-tile-desktop-local.json
 
       - name: Summarize category scores
         run: |
-          node -e "const fs=require('fs'); const f=p=>JSON.parse(fs.readFileSync(p,'utf8')); const fmt=o=>Object.fromEntries(Object.entries(o).map(([k,v])=>[k,Math.round((v.score||0)*100)])); const h=f('lhr-home.json').categories; const t=f('lhr-tile.json').categories; const hd=f('lhr-home-desktop.json').categories; const td=f('lhr-tile-desktop.json').categories; console.log('Home (mobile):',fmt(h)); console.log('Tile (mobile):',fmt(t)); console.log('Home (desktop):',fmt(hd)); console.log('Tile (desktop):',fmt(td));"
+          node -e "const fs=require('fs'); const f=p=>JSON.parse(fs.readFileSync(p,'utf8')); const fmt=o=>Object.fromEntries(Object.entries(o).map(([k,v])=>[k,Math.round((v.score||0)*100)])); const h=f('lhr-home.json').categories; const t=f('lhr-tile.json').categories; const hd=f('lhr-home-desktop.json').categories; const td=f('lhr-tile-desktop.json').categories; const hl=f('lhr-home-local.json').categories; const tl=f('lhr-tile-local.json').categories; const hdl=f('lhr-home-desktop-local.json').categories; const tdl=f('lhr-tile-desktop-local.json').categories; console.log('Deployed — Home (mobile):',fmt(h)); console.log('Deployed — Tile (mobile):',fmt(t)); console.log('Deployed — Home (desktop):',fmt(hd)); console.log('Deployed — Tile (desktop):',fmt(td)); console.log('Local — Home (mobile):',fmt(hl)); console.log('Local — Tile (mobile):',fmt(tl)); console.log('Local — Home (desktop):',fmt(hdl)); console.log('Local — Tile (desktop):',fmt(tdl));"
 
