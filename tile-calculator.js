@@ -41,6 +41,14 @@ class TileCalculator {
 
         this.setupPresetButtons();
         this.setupTileSpecificListeners();
+        
+        // Test: Set default values and calculate
+        console.log('Setting test values and calculating...');
+        if (this.roomLength) this.roomLength.value = '10';
+        if (this.roomWidth) this.roomWidth.value = '12';
+        if (this.tileLength) this.tileLength.value = '12';
+        if (this.tileWidth) this.tileWidth.value = '12';
+        this.calculate();
     }
 
     // Basic calculator functionality

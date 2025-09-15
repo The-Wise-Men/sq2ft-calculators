@@ -41,6 +41,14 @@ class TileCalculator {
 
         this.setupPresetButtons();
         this.setupTileSpecificListeners();
+        
+        // Test: Set default values and calculate
+        console.log('Setting test values and calculating...');
+        if (this.roomLength) this.roomLength.value = '10';
+        if (this.roomWidth) this.roomWidth.value = '12';
+        if (this.tileLength) this.tileLength.value = '12';
+        if (this.tileWidth) this.tileWidth.value = '12';
+        this.calculate();
     }
 
     // Basic calculator functionality
@@ -52,6 +60,7 @@ class TileCalculator {
 
     setResultValue(id, value, format = 'number') {
         const element = document.getElementById(id);
+        console.log(`Setting result for ${id}:`, { element: !!element, value, format });
         if (element) {
             let formattedValue = value;
             if (format === 'currency') {
@@ -62,6 +71,9 @@ class TileCalculator {
                 formattedValue = `${value.toFixed(2)}%`;
             }
             element.textContent = formattedValue;
+            console.log(`Updated ${id} to:`, formattedValue);
+        } else {
+            console.error(`Element not found for id: ${id}`);
         }
     }
 
