@@ -254,5 +254,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Export for testing
-// CarpetCalculator is already initialized above
+// Initialize the calculator when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Carpet Calculator: DOM loaded, initializing...');
+    try {
+        new CarpetCalculator();
+        console.log('Carpet Calculator: Initialized successfully');
+    } catch (error) {
+        console.error('Failed to initialize Carpet Calculator:', error);
+    }
+});
