@@ -2,8 +2,10 @@ import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import legacy from '@vitejs/plugin-legacy'
 
+const basePath = process.env.NODE_ENV === 'production' ? '/sq2ft-calculators/' : '/';
+
 export default defineConfig({
-  base: '/sq2ft-calculators/',
+  base: basePath,
   plugins: [
     // PWA support
     VitePWA({
