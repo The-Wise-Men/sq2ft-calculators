@@ -1,172 +1,102 @@
-// Tile Calculator JavaScript
+// Tile Calculator - Simple Working Version
+console.log('Tile calculator script loaded');
 
-class TileCalculator {
-    constructor() {
-        console.log('TileCalculator constructor called');
+// Wait for DOM to be ready
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, initializing tile calculator');
+    
+    // Get input elements
+    const roomLength = document.getElementById('room-length');
+    const roomWidth = document.getElementById('room-width');
+    const tileLength = document.getElementById('tile-length');
+    const tileWidth = document.getElementById('tile-width');
+    const wasteFactor = document.getElementById('waste-factor');
+    const tilePrice = document.getElementById('tile-price');
+    
+    // Get result elements
+    const roomArea = document.getElementById('room-area');
+    const tilesNeeded = document.getElementById('tiles-needed');
+    const tilesWithWaste = document.getElementById('tiles-with-waste');
+    const estimatedCost = document.getElementById('estimated-cost');
+    
+    console.log('Elements found:', {
+        roomLength: !!roomLength,
+        roomWidth: !!roomWidth,
+        tileLength: !!tileLength,
+        tileWidth: !!tileWidth,
+        roomArea: !!roomArea,
+        tilesNeeded: !!tilesNeeded
+    });
+    
+    // Calculate function
+    function calculate() {
+        console.log('Calculate function called');
         
-        this.roomLength = document.getElementById('room-length');
-        this.roomWidth = document.getElementById('room-width');
-        this.tileLength = document.getElementById('tile-length');
-        this.tileWidth = document.getElementById('tile-width');
-        this.wasteFactor = document.getElementById('waste-factor');
-        this.tilePrice = document.getElementById('tile-price');
-        this.groutWidth = document.getElementById('grout-width');
-        this.tilesPerBox = document.getElementById('tiles-per-box');
-
-        console.log('Elements found:', {
-            roomLength: !!this.roomLength,
-            roomWidth: !!this.roomWidth,
-            tileLength: !!this.tileLength,
-            tileWidth: !!this.tileWidth
-        });
-
-        this.setupPresetButtons();
-        this.setupTileSpecificListeners();
+        const length = parseFloat(roomLength.value) || 0;
+        const width = parseFloat(roomWidth.value) || 0;
+        const tileL = parseFloat(tileLength.value) || 0;
+        const tileW = parseFloat(tileWidth.value) || 0;
+        const waste = parseFloat(wasteFactor.value) || 10;
+        const price = parseFloat(tilePrice.value) || 0;
         
-        // Test calculation
-        console.log('Running test calculation...');
-        this.calculate();
-    }
-
-    setupTileSpecificListeners() {
-        // Real-time calculation on input change
-        [this.roomLength, this.roomWidth, this.tileLength, this.tileWidth,
-         this.wasteFactor, this.tilePrice, this.groutWidth].forEach(input => {
-            if (input) {
-                input.addEventListener('input', () => this.calculate());
-            }
-        });
-
-        // Box calculation on tiles per box change
-        if (this.tilesPerBox) {
-            this.tilesPerBox.addEventListener('input', () => this.updateBoxCount());
-        }
-    }
-
-    setupPresetButtons() {
-        const presetButtons = document.querySelectorAll('.preset-btn');
-        presetButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const size = btn.dataset.size;
-                const [length, width] = size.split('x');
-                this.tileLength.value = length;
-                this.tileWidth.value = width;
-                this.calculate();
-            });
-        });
-    }
-
-    calculate() {
-        console.log('Calculate method called');
+        console.log('Values:', { length, width, tileL, tileW, waste, price });
         
-        const roomL = this.getInputValue('room-length');
-        const roomW = this.getInputValue('room-width');
-        const tileL = this.getInputValue('tile-length');
-        const tileW = this.getInputValue('tile-width');
-        const waste = this.getInputValue('waste-factor', 10);
-        const price = this.getInputValue('tile-price');
-        const grout = this.getInputValue('grout-width', 3);
-
-        console.log('Input values:', { roomL, roomW, tileL, tileW, waste, price, grout });
-
-        if (roomL <= 0 || roomW <= 0 || tileL <= 0 || tileW <= 0) {
-            this.showError('Please enter valid dimensions');
-            return;
-        }
-
-        const roomArea = roomL * roomW;
-        const tileArea = (tileL * tileW) / 144; // Convert to square feet
-        const baseTiles = Math.ceil(roomArea / tileArea);
-        const tilesWithWaste = Math.ceil(baseTiles * (1 + waste / 100));
-        const groutCoverage = this.calculateGroutCoverage(roomL, roomW, tileL, tileW, grout);
-        const estimatedCost = tilesWithWaste * price;
-
-        // Update display
-        this.updateResults({
-            roomArea: roomArea.toFixed(2),
-            baseTiles: baseTiles,
-            tilesWithWaste: tilesWithWaste,
-            groutCoverage: groutCoverage.toFixed(2),
-            estimatedCost: estimatedCost.toFixed(2)
-        });
-
-        this.updateBoxCount();
-    }
-
-    calculateGroutCoverage(roomL, roomW, tileL, tileW, groutMM) {
-        const tileLInches = tileL;
-        const tileWInches = tileW;
-        const groutInches = groutMM / 25.4;
-
-        const tilesPerRow = Math.ceil(roomW * 12 / tileWInches);
-        const tilesPerCol = Math.ceil(roomL * 12 / tileLInches);
-
-        const horizontalGroutLength = (tilesPerRow - 1) * roomW * 12;
-        const verticalGroutLength = (tilesPerCol - 1) * roomL * 12;
-
-        const horizontalGroutArea = horizontalGroutLength * groutInches;
-        const verticalGroutArea = verticalGroutLength * groutInches;
-
-        // Convert back to square feet
-        return (horizontalGroutArea + verticalGroutArea) / 144;
-    }
-
-    updateResults(results) {
-        this.setResultValue('room-area', results.roomArea, 'integer');
-        this.setResultValue('tiles-needed', results.baseTiles, 'integer');
-        this.setResultValue('tiles-with-waste', results.tilesWithWaste, 'integer');
-        this.setResultValue('grout-coverage', results.groutCoverage, 'integer');
-        this.setResultValue('estimated-cost', results.estimatedCost, 'currency');
-
-        // Store for box calculation
-        this.currentTilesNeeded = results.tilesWithWaste;
-    }
-
-    updateBoxCount() {
-        const tilesPerBox = parseInt(this.tilesPerBox.value) || 0;
-        const boxCountElement = document.getElementById('box-count');
-        
-        if (tilesPerBox > 0 && this.currentTilesNeeded) {
-            const boxCount = Math.ceil(this.currentTilesNeeded / tilesPerBox);
-            this.setResultValue('box-count', boxCount, 'integer');
+        if (length > 0 && width > 0 && tileL > 0 && tileW > 0) {
+            const area = length * width;
+            const tileArea = (tileL * tileW) / 144; // Convert to square feet
+            const baseTiles = Math.ceil(area / tileArea);
+            const tilesWithWasteCount = Math.ceil(baseTiles * (1 + waste / 100));
+            const cost = tilesWithWasteCount * price;
+            
+            console.log('Calculated:', { area, baseTiles, tilesWithWasteCount, cost });
+            
+            // Update results
+            if (roomArea) roomArea.textContent = area.toFixed(2) + ' sq ft';
+            if (tilesNeeded) tilesNeeded.textContent = baseTiles + ' tiles';
+            if (tilesWithWaste) tilesWithWaste.textContent = tilesWithWasteCount + ' tiles';
+            if (estimatedCost) estimatedCost.textContent = '$' + cost.toFixed(2);
+            
+            console.log('Results updated');
+        } else {
+            console.log('Invalid input values');
         }
     }
-
-    getInputValue(id, defaultValue = 0) {
-        const input = document.getElementById(id);
-        if (!input) return defaultValue;
-        return parseFloat(input.value) || defaultValue;
+    
+    // Add event listeners
+    if (roomLength) {
+        roomLength.addEventListener('input', calculate);
+        console.log('Added listener to room length');
     }
-
-    setResultValue(id, value, format = 'number') {
-        const element = document.getElementById(id);
-        if (element) {
-            let formattedValue = value;
-            if (format === 'currency') {
-                formattedValue = `$${value.toFixed(2)}`;
-            } else if (format === 'integer') {
-                formattedValue = Math.round(value);
-            } else if (format === 'percentage') {
-                formattedValue = `${value.toFixed(2)}%`;
-            }
-            element.textContent = formattedValue;
-        }
+    if (roomWidth) {
+        roomWidth.addEventListener('input', calculate);
+        console.log('Added listener to room width');
     }
-
-    showError(message) {
-        console.error('Tile Calculator Error:', message);
-        // You can add UI error display here
+    if (tileLength) {
+        tileLength.addEventListener('input', calculate);
+        console.log('Added listener to tile length');
     }
-}
-
-// Initialize the calculator when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    // Add a small delay to ensure all elements are available
-    setTimeout(() => {
-        try {
-            new TileCalculator();
-        } catch (error) {
-            console.error('Failed to initialize Tile Calculator:', error);
-        }
-    }, 100);
+    if (tileWidth) {
+        tileWidth.addEventListener('input', calculate);
+        console.log('Added listener to tile width');
+    }
+    if (wasteFactor) {
+        wasteFactor.addEventListener('input', calculate);
+        console.log('Added listener to waste factor');
+    }
+    if (tilePrice) {
+        tilePrice.addEventListener('input', calculate);
+        console.log('Added listener to tile price');
+    }
+    
+    // Set default values and calculate
+    if (roomLength) roomLength.value = '10';
+    if (roomWidth) roomWidth.value = '12';
+    if (tileLength) tileLength.value = '12';
+    if (tileWidth) tileWidth.value = '12';
+    if (wasteFactor) wasteFactor.value = '10';
+    if (tilePrice) tilePrice.value = '2.50';
+    
+    calculate();
+    
+    console.log('Tile calculator initialization complete');
 });

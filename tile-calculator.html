@@ -396,61 +396,12 @@
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <!-- Temporarily disabled main script for testing -->
-    <!-- <script type="module" src="/sq2ft-calculators/assets/main-Bw7QRpYm.js"></script> -->
+    <script type="module" src="/sq2ft-calculators/assets/main-Bw7QRpYm.js"></script>
     <link rel="stylesheet" href="/sq2ft-calculators/assets/main-RRqeZx1v.css">
-    <script>
+    <!-- Temporarily disabled AdSense for testing -->
+    <!-- <script>
       try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
-    </script>
-    <script>
-        // Simple test calculator - inline
-        console.log('Inline test calculator script loaded');
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM loaded, starting inline test');
-            
-            // Find the room area element
-            const roomAreaElement = document.getElementById('room-area');
-            console.log('Room area element found:', !!roomAreaElement);
-            
-            if (roomAreaElement) {
-                // Set a test value
-                roomAreaElement.textContent = '120 sq ft';
-                console.log('Set test value to room area');
-                
-                // Find input elements and add listeners
-                const roomLength = document.getElementById('room-length');
-                const roomWidth = document.getElementById('room-width');
-                
-                console.log('Input elements found:', {
-                    roomLength: !!roomLength,
-                    roomWidth: !!roomWidth
-                });
-                
-                if (roomLength && roomWidth) {
-                    const calculate = function() {
-                        const length = parseFloat(roomLength.value) || 0;
-                        const width = parseFloat(roomWidth.value) || 0;
-                        const area = length * width;
-                        
-                        console.log('Calculating:', { length, width, area });
-                        roomAreaElement.textContent = area.toFixed(2) + ' sq ft';
-                    };
-                    
-                    roomLength.addEventListener('input', calculate);
-                    roomWidth.addEventListener('input', calculate);
-                    
-                    // Set test values
-                    roomLength.value = '10';
-                    roomWidth.value = '12';
-                    calculate();
-                    
-                    console.log('Inline test setup complete');
-                }
-            } else {
-                console.log('Room area element not found');
-            }
-        });
-    </script>
+    </script> -->
+    <script src="tile-calculator.js"></script>
 </body>
 </html>
