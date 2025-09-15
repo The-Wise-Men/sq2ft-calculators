@@ -175,7 +175,7 @@ const hardwoodPricing = {
 };
 
 // Installation complexity factors
-const installationComplexity = {
+const hardwoodInstallationComplexity = {
     'basic': { multiplier: 1.0, description: 'Simple rectangular room' },
     'moderate': { multiplier: 1.3, description: 'Some obstacles, closets' },
     'complex': { multiplier: 1.6, description: 'Many obstacles, custom cuts' },
