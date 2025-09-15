@@ -2,6 +2,7 @@
 
 class TileCalculator {
     constructor() {
+        console.log('TileCalculator constructor called');
 
         this.roomLength = document.getElementById('room-length');
         this.roomWidth = document.getElementById('room-width');
@@ -11,6 +12,17 @@ class TileCalculator {
         this.tilePrice = document.getElementById('tile-price');
         this.groutWidth = document.getElementById('grout-width');
         this.tilesPerBox = document.getElementById('tiles-per-box');
+
+        console.log('Input elements found:', {
+            roomLength: !!this.roomLength,
+            roomWidth: !!this.roomWidth,
+            tileLength: !!this.tileLength,
+            tileWidth: !!this.tileWidth,
+            wasteFactor: !!this.wasteFactor,
+            tilePrice: !!this.tilePrice,
+            groutWidth: !!this.groutWidth,
+            tilesPerBox: !!this.tilesPerBox
+        });
 
         this.setupPresetButtons();
         this.setupTileSpecificListeners();
@@ -60,7 +72,13 @@ class TileCalculator {
         [this.roomLength, this.roomWidth, this.tileLength, this.tileWidth,
          this.wasteFactor, this.tilePrice, this.groutWidth].forEach(input => {
             if (input) {
-                input.addEventListener('input', () => this.calculate());
+                console.log('Adding input listener to:', input.id);
+                input.addEventListener('input', () => {
+                    console.log('Input changed on:', input.id, 'value:', input.value);
+                    this.calculate();
+                });
+            } else {
+                console.log('Input element not found for listener');
             }
         });
 
@@ -267,7 +285,9 @@ document.addEventListener('DOMContentLoaded', () => {
 // Initialize the calculator when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     try {
-        new TileCalculator();
+        console.log('Initializing Tile Calculator...');
+        const calculator = new TileCalculator();
+        console.log('Tile Calculator initialized successfully:', calculator);
     } catch (error) {
         console.error('Failed to initialize Tile Calculator:', error);
     }
