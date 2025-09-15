@@ -1,12 +1,7 @@
 // Tile Calculator JavaScript
 
-class TileCalculator extends CalculatorBase {
+class TileCalculator {
     constructor() {
-        super('tile', {
-            enableValidation: true,
-            enablePersistence: true,
-            enableLoadingStates: true
-        });
 
         this.roomLength = document.getElementById('room-length');
         this.roomWidth = document.getElementById('room-width');
@@ -19,6 +14,49 @@ class TileCalculator extends CalculatorBase {
 
         this.setupPresetButtons();
         this.setupTileSpecificListeners();
+    }
+
+    // Basic calculator functionality
+    getInputValue(id, defaultValue = 0) {
+        const input = document.getElementById(id);
+        if (!input) return defaultValue;
+        return parseFloat(input.value) || defaultValue;
+    }
+
+    setResultValue(id, value, format = 'number') {
+        const element = document.getElementById(id);
+        if (element) {
+            let formattedValue = value;
+            if (format === 'currency') {
+                formattedValue = `$${value.toFixed(2)}`;
+            } else if (format === 'integer') {
+                formattedValue = Math.round(value);
+            } else if (format === 'percentage') {
+                formattedValue = `${value.toFixed(2)}%`;
+            }
+            element.textContent = formattedValue;
+        }
+    }
+
+    showLoading() {
+        const calculateBtn = document.getElementById('calculate-btn');
+        if (calculateBtn) {
+            calculateBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Calculate';
+            calculateBtn.disabled = true;
+        }
+    }
+
+    hideLoading() {
+        const calculateBtn = document.getElementById('calculate-btn');
+        if (calculateBtn) {
+            calculateBtn.innerHTML = 'Calculate';
+            calculateBtn.disabled = false;
+        }
+    }
+
+    showError(message) {
+        console.error('Tile Calculator Error:', message);
+        // You can add UI error display here
     }
 
     getCalculateButtonText() {
@@ -234,6 +272,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Export for testing
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = TileCalculator;
-}
+// Initialize the calculator when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    try {
+        new TileCalculator();
+    } catch (error) {
+        console.error('Failed to initialize Tile Calculator:', error);
+    }
+});
