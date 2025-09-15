@@ -1,0 +1,52 @@
+{
+  "name": "sq2ft-calculators",
+  "version": "1.0.0",
+  "description": "Professional flooring and construction calculators",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint . --ext .js,.html",
+    "lint:fix": "eslint . --ext .js,.html --fix",
+    "format": "prettier --write .",
+    "serve": "vite preview --port 3000",
+    "deploy": "node scripts/deploy.js",
+    "deploy:github": "node scripts/deploy.js github",
+    "deploy:netlify": "node scripts/deploy.js netlify",
+    "deploy:vercel": "node scripts/deploy.js vercel",
+    "setup": "node scripts/dev-setup.js",
+    "start": "node scripts/quick-start.js",
+    "predeploy": "npm run test && npm run lint && npm run build"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-legacy": "^5.2.0",
+    "@vitest/ui": "^1.0.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-html": "^7.1.0",
+    "prettier": "^3.1.1",
+    "vite": "^5.0.0",
+    "vite-plugin-pwa": "^0.17.0",
+    "vitest": "^1.0.0",
+    "workbox-window": "^7.0.0"
+  },
+  "dependencies": {
+    "aos": "^2.3.4",
+    "animate.css": "^4.1.1"
+  },
+  "keywords": [
+    "calculator",
+    "flooring",
+    "construction",
+    "tile",
+    "carpet",
+    "hardwood",
+    "baseboard",
+    "subfloor"
+  ],
+  "author": "sq2ft",
+  "license": "MIT"
+}

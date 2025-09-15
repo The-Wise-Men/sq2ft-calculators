@@ -1,0 +1,3 @@
+# Square Inches to Square Feet Converter
+# No external dependencies required - uses only Python standard library
+# Python 3.6+ required for tkinter and fractions module

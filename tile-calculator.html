@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free tile calculator - Calculate how many tiles you need, grout coverage, and total project cost. Perfect for bathroom, kitchen, and floor tiling projects.">
+    <meta name="keywords" content="tile calculator, tiles needed calculator, grout calculator, bathroom tile calculator, kitchen tile calculator, flooring calculator">
+    <meta name="author" content="sq2ft">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sq2ft.com/tile-calculator">
+    <meta property="og:title" content="Tile Calculator - How Many Tiles Do I Need? Free Tool | sq2ft">
+    <meta property="og:description" content="Calculate tiles needed, grout coverage, and project costs. Perfect for DIY bathroom, kitchen, and floor tiling projects.">
+    <meta property="og:image" content="https://sq2ft.com/tile-calculator-og.jpg">
+
+    <title>Tile Calculator - How Many Tiles Do I Need? Free Tool | sq2ft</title>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Tile Calculator | sq2ft",
+        "description": "Calculate how many tiles you need for your flooring project, including grout and waste factors",
+        "url": "https://sq2ft.com/tile-calculator",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "Calculate tiles needed",
+            "Grout coverage calculator",
+            "Waste factor calculation",
+            "Cost estimation",
+            "Multiple tile sizes supported"
+        ]
+    }
+    </script>
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-PLACEHOLDER"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.2/css/hover-min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="canonical" href="https://sq2ft.com/tile-calculator">
+</head>
+<body>
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon"><i class="fa-solid fa-ruler-combined"></i></span>
+                    <span class="logo-text">sq<sup>2</sup>ft</span>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Calculators</a>
+                    <div class="dropdown-menu">
+                        <a href="index.html">Sq<sup>2</sup> Inches to Ft</a>
+                        <a href="tile-calculator.html">Tile Calculator</a>
+                        <a href="carpet-calculator.html">Carpet Calculator</a>
+                        <a href="hardwood-calculator.html">Hardwood Calculator</a>
+                        <a href="baseboard-calculator.html">Baseboard Calculator</a>
+                        <a href="subfloor-calculator.html">Subfloor Calculator</a>
+                    </div>
+                </div>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <div class="mobile-ad-space">
+                    <div class="mobile-ad-placeholder">
+                        <i class="fa-solid fa-mobile-screen-button"></i> Mobile Ad Space - 320x100
+                    </div>
+                </div>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <!-- Header content removed -->
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Small Ad Banner -->
+        <section class="top-ad-section">
+            <div class="ad-placeholder small-ad">
+                <div class="ad-placeholder-content">
+                    <span class="ad-icon"><i class="fa-solid fa-bullhorn"></i></span>
+                    <span class="ad-text">Small Banner Ad</span>
+                    <span class="ad-size">468x60</span>
+                </div>
+            </div>
+            <ins class="adsbygoogle" style="display:none"
+                 data-ad-client="ca-pub-PLACEHOLDER"
+                 data-ad-slot="PLACEHOLDER"
+                 data-ad-format="banner"
+                 data-ad-width="468"
+                 data-ad-height="60"></ins>
+        </section>
+        <section class="calculator-section">
+            <div class="page-title">
+                <h1><i class="fa-solid fa-border-all" style="margin-right:0.5rem"></i> Tile Calculator</h1>
+                <p class="subtitle">Calculate tiles needed, grout coverage, and project costs</p>
+
+                <!-- Calculator Navigation inside title box -->
+                <nav class="calculator-nav">
+                    <a href="index.html">Sq<sup>2</sup> Inches to Ft</a>
+                    <a href="tile-calculator.html" class="active">Tile Calculator</a>
+                    <a href="carpet-calculator.html">Carpet Calculator</a>
+                    <a href="hardwood-calculator.html">Hardwood Calculator</a>
+                    <a href="baseboard-calculator.html">Baseboard Calculator</a>
+                    <a href="subfloor-calculator.html">Subfloor Calculator</a>
+                </nav>
+            </div>
+            <div class="calculator-card">
+                <div class="input-section">
+                    <div class="input-group">
+                        <h3>Room Dimensions</h3>
+                        <div class="input-row">
+                            <div class="input-wrapper">
+                                <label for="room-length">Length (ft)</label>
+                                <input type="number" id="room-length" step="0.25" min="0" placeholder="12">
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="room-width">Width (ft)</label>
+                                <input type="number" id="room-width" step="0.25" min="0" placeholder="10">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <h3>Tile Dimensions</h3>
+                        <div class="input-row">
+                            <div class="input-wrapper">
+                                <label for="tile-length">Tile Length (inches)</label>
+                                <input type="number" id="tile-length" step="0.125" min="0" placeholder="12">
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="tile-width">Tile Width (inches)</label>
+                                <input type="number" id="tile-width" step="0.125" min="0" placeholder="12">
+                            </div>
+                        </div>
+                        <div class="preset-tiles">
+                            <button class="preset-btn" data-size="12x12">12"×12"</button>
+                            <button class="preset-btn" data-size="12x24">12"×24"</button>
+                            <button class="preset-btn" data-size="6x24">6"×24"</button>
+                            <button class="preset-btn" data-size="18x18">18"×18"</button>
+                            <button class="preset-btn" data-size="24x24">24"×24"</button>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <h3>Project Settings</h3>
+                        <div class="input-row">
+                            <div class="input-wrapper">
+                                <label for="waste-factor">Waste Factor (%)</label>
+                                <input type="number" id="waste-factor" step="1" min="0" max="50" value="10" placeholder="10">
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="tile-price">Tile Price (per sq ft)</label>
+                                <input type="number" id="tile-price" step="0.01" min="0" placeholder="3.50">
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-wrapper">
+                                <label for="grout-width">Grout Line Width (mm)</label>
+                                <input type="number" id="grout-width" step="0.5" min="0" value="3" placeholder="3">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="calculate-btn" class="convert-btn">🔢 Calculate Tiles Needed</button>
+                </div>
+
+                <div class="result-section">
+                    <div class="result-header">Calculation Results</div>
+                    <div class="results-grid">
+                        <div class="result-item">
+                            <div class="result-label">Room Area</div>
+                            <div class="result-value" id="room-area">0 sq ft</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Tiles Needed</div>
+                            <div class="result-value" id="tiles-needed">0 tiles</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">With Waste Factor</div>
+                            <div class="result-value" id="tiles-with-waste">0 tiles</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Grout Coverage</div>
+                            <div class="result-value" id="grout-coverage">0 sq ft</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Estimated Cost</div>
+                            <div class="result-value" id="estimated-cost">$0.00</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Boxes Needed</div>
+                            <div class="result-value" id="boxes-needed">
+                                <input type="number" id="tiles-per-box" placeholder="Tiles per box" min="1" style="width: 80px; margin-right: 5px;">
+                                <span id="box-count">0 boxes</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="clear-btn" class="clear-btn">🗑️ Clear</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ad Space -->
+        <section class="ad-section">
+            <div class="ad-placeholder">
+                <div class="ad-placeholder-content">
+                    <span class="ad-icon">📢</span>
+                    <span class="ad-text">Advertisement Space</span>
+                    <span class="ad-size">728x90 Banner</span>
+                </div>
+            </div>
+            <ins class="adsbygoogle" style="display:none"
+                 data-ad-client="ca-pub-PLACEHOLDER"
+                 data-ad-slot="PLACEHOLDER"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </section>
+
+        <section class="content-section">
+            <article>
+                <h2>How to Calculate Tiles Needed for Your Project</h2>
+                <p>Planning a tile installation? Our comprehensive tile calculator helps you determine exactly how many tiles you need, accounting for waste factors and grout coverage.</p>
+
+                <h3>Step-by-Step Tile Calculation</h3>
+                <ol>
+                    <li><strong>Measure your room:</strong> Length × Width = Total square footage</li>
+                    <li><strong>Calculate tile coverage:</strong> Tile length × Tile width = Tile area</li>
+                    <li><strong>Divide room area by tile area:</strong> This gives you the base number of tiles</li>
+                    <li><strong>Add waste factor:</strong> Typically 10-15% for straight layouts, 15-20% for diagonal</li>
+                    <li><strong>Account for grout lines:</strong> Wider grout lines require more tiles</li>
+                </ol>
+
+                <h3>Common Tile Sizes and Coverage</h3>
+                <div class="conversion-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tile Size</th>
+                                <th>Sq Ft per Tile</th>
+                                <th>Tiles per Sq Ft</th>
+                                <th>Best Use</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>12" × 12"</td>
+                                <td>1.0</td>
+                                <td>1.0</td>
+                                <td>Standard floors, walls</td>
+                            </tr>
+                            <tr>
+                                <td>12" × 24"</td>
+                                <td>2.0</td>
+                                <td>0.5</td>
+                                <td>Modern floors, large areas</td>
+                            </tr>
+                            <tr>
+                                <td>6" × 24"</td>
+                                <td>1.0</td>
+                                <td>1.0</td>
+                                <td>Wood-look planks</td>
+                            </tr>
+                            <tr>
+                                <td>18" × 18"</td>
+                                <td>2.25</td>
+                                <td>0.44</td>
+                                <td>Large format floors</td>
+                            </tr>
+                            <tr>
+                                <td>24" × 24"</td>
+                                <td>4.0</td>
+                                <td>0.25</td>
+                                <td>Commercial, large spaces</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Waste Factor Guidelines</h3>
+                <ul>
+                    <li><strong>Straight/Grid Pattern:</strong> 10-15% waste</li>
+                    <li><strong>Diagonal Pattern:</strong> 15-20% waste</li>
+                    <li><strong>Herringbone Pattern:</strong> 15-25% waste</li>
+                    <li><strong>Complex Patterns:</strong> 20-30% waste</li>
+                    <li><strong>Irregular Rooms:</strong> Add 5% extra</li>
+                </ul>
+
+                <h3>Grout Coverage Calculation</h3>
+                <p>Grout coverage depends on tile size, grout line width, and tile thickness. Our calculator uses the standard formula:</p>
+                <div class="formula">
+                    <strong>Grout Area = (Tile Length + Tile Width + Grout Width) × Grout Width × Number of Tiles</strong>
+                </div>
+            </article>
+        </section>
+
+        <section class="faq-section">
+            <h2>Tile Calculator FAQ</h2>
+
+            <div class="faq-item">
+                <h3>How do I measure for tiles in an irregular room?</h3>
+                <p>Break the room into rectangles, calculate each area separately, then add them together. Add an extra 5% waste factor for irregular shapes.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Should I round up or down when calculating tiles?</h3>
+                <p>Always round up to the nearest whole tile. You can't install partial tiles, and having extras is better than running short.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>How much extra tile should I order?</h3>
+                <p>Order 10-15% extra for straight patterns, 15-20% for diagonal patterns. Keep extras for future repairs.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Do I need different calculations for wall vs floor tiles?</h3>
+                <p>The calculation method is the same, but wall installations typically need 15% waste factor due to cuts around fixtures.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <span class="logo-icon"><i class="fa-solid fa-ruler-combined"></i></span>
+                        <span class="logo-text">sq<sup>2</sup>ft</span>
+                    </a>
+                    <p class="footer-tagline">Fast, accurate flooring calculators with modern, mobile-first design.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" aria-label="Bluesky"><i class="fa-brands fa-bluesky"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Calculators</h4>
+                    <ul>
+                        <li><a href="index.html">Sq<sup>2</sup> Inches to Ft</a></li>
+                        <li><a href="tile-calculator.html">Tile Calculator</a></li>
+                        <li><a href="carpet-calculator.html">Carpet Calculator</a></li>
+                        <li><a href="hardwood-calculator.html">Hardwood Calculator</a></li>
+                        <li><a href="baseboard-calculator.html">Baseboard Calculator</a></li>
+                        <li><a href="subfloor-calculator.html">Subfloor Calculator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">How-to Guides</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; <span class="js-current-year"></span> sq<sup>2</sup>ft. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.min.js"></script>
+    <script src="script.js"></script>
+    <script src="calculator-base.js"></script>
+    <script>
+      try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+    </script>
+    <script src="tile-calculator.js"></script>
+</body>
+</html>

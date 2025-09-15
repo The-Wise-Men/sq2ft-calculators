@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free carpet calculator - Calculate carpet square footage, padding needed, and total project cost. Includes waste factor and seam planning.">
+    <meta name="keywords" content="carpet calculator, carpet square footage, carpet padding calculator, carpet cost calculator, flooring calculator">
+    <meta name="author" content="sq2ft">
+    <meta name="robots" content="index, follow">
+
+    <title>Carpet Calculator - Square Footage, Padding & Cost Calculator | sq2ft</title>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Carpet Calculator",
+        "description": "Calculate carpet square footage, padding requirements, and project costs",
+        "url": "https://sq2ft.com/carpet-calculator",
+        "applicationCategory": "UtilityApplication",
+        "featureList": [
+            "Carpet square footage calculator",
+            "Carpet padding calculator",
+            "Seam planning",
+            "Waste factor calculation",
+            "Cost estimation"
+        ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.2/css/hover-min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+</head>
+<body>
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon"><i class="fa-solid fa-ruler-combined"></i></span>
+                    <span class="logo-text">sq<sup>2</sup>ft</span>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Calculators</a>
+                    <div class="dropdown-menu">
+                        <a href="index.html">Sq<sup>2</sup> Inches to Ft</a>
+                        <a href="tile-calculator.html">Tile Calculator</a>
+                        <a href="carpet-calculator.html">Carpet Calculator</a>
+                        <a href="hardwood-calculator.html">Hardwood Calculator</a>
+                        <a href="baseboard-calculator.html">Baseboard Calculator</a>
+                        <a href="subfloor-calculator.html">Subfloor Calculator</a>
+                    </div>
+                </div>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+
+                <!-- Mobile Ad Space (only visible on mobile) -->
+                <div class="mobile-ad-space">
+                    <div class="mobile-ad-placeholder">📱 Mobile Ad Space - 320x100</div>
+                </div>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <!-- Header content removed -->
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Small Ad Banner -->
+        <section class="top-ad-section">
+            <div class="ad-placeholder small-ad">
+                <div class="ad-placeholder-content">
+                    <span class="ad-icon"><i class="fa-solid fa-bullhorn"></i></span>
+                    <span class="ad-text">Small Banner Ad</span>
+                    <span class="ad-size">468x60</span>
+                </div>
+            </div>
+            <ins class="adsbygoogle" style="display:none"
+                 data-ad-client="ca-pub-PLACEHOLDER"
+                 data-ad-slot="PLACEHOLDER"
+                 data-ad-format="banner"
+                 data-ad-width="468"
+                 data-ad-height="60"></ins>
+        </section>
+        <section class="calculator-section">
+            <div class="page-title">
+                <h1><i class="fa-solid fa-rug" style="margin-right:0.5rem"></i> Carpet Calculator</h1>
+                <p class="subtitle">Calculate carpet, padding, and installation costs</p>
+
+                <!-- Calculator Navigation inside title box -->
+                <nav class="calculator-nav">
+                    <a href="index.html">Sq<sup>2</sup> Inches to Ft</a>
+                    <a href="tile-calculator.html">Tile Calculator</a>
+                    <a href="carpet-calculator.html" class="active">Carpet Calculator</a>
+                    <a href="hardwood-calculator.html">Hardwood Calculator</a>
+                    <a href="baseboard-calculator.html">Baseboard Calculator</a>
+                    <a href="subfloor-calculator.html">Subfloor Calculator</a>
+                </nav>
+            </div>
+            <div class="calculator-card">
+                <div class="input-section">
+                    <div class="input-group">
+                        <h3>Room Dimensions</h3>
+                        <div class="input-row">
+                            <div class="input-wrapper">
+                                <label for="room-length">Length (ft)</label>
+                                <input type="number" id="room-length" step="0.25" min="0" placeholder="12">
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="room-width">Width (ft)</label>
+                                <input type="number" id="room-width" step="0.25" min="0" placeholder="10">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <h3>Carpet Specifications</h3>
+                        <div class="input-row">
+                            <div class="input-wrapper">
+                                <label for="carpet-width">Carpet Roll Width (ft)</label>
+                                <select id="carpet-width">
+                                    <option value="12">12 ft (Standard)</option>
+                                    <option value="15">15 ft (Wide)</option>
+                                    <option value="13.5">13.5 ft (Broadloom)</option>
+                                    <option value="6">6 ft (Runner)</option>
+                                </select>
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="carpet-price">Carpet Price (per sq yd)</label>
+                                <input type="number" id="carpet-price" step="0.01" min="0" placeholder="25.00">
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-wrapper">
+                                <label for="padding-price">Padding Price (per sq yd)</label>
+                                <input type="number" id="padding-price" step="0.01" min="0" placeholder="3.50">
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="installation-price">Installation (per sq yd)</label>
+                                <input type="number" id="installation-price" step="0.01" min="0" placeholder="8.00">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <h3>Project Settings</h3>
+                        <div class="input-row">
+                            <div class="input-wrapper">
+                                <label for="waste-factor">Waste Factor (%)</label>
+                                <input type="number" id="waste-factor" step="1" min="0" max="50" value="10" placeholder="10">
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="seam-direction">Seam Direction</label>
+                                <select id="seam-direction">
+                                    <option value="length">Along Length</option>
+                                    <option value="width">Along Width</option>
+                                    <option value="optimal">Optimal (Less Waste)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="calculate-btn" class="convert-btn">📏 Calculate Carpet Needed</button>
+                </div>
+
+                <div class="result-section">
+                    <div class="result-header">Calculation Results</div>
+                    <div class="results-grid">
+                        <div class="result-item">
+                            <div class="result-label">Room Area</div>
+                            <div class="result-value" id="room-area">0 sq ft</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Area in Sq Yards</div>
+                            <div class="result-value" id="room-area-yards">0 sq yd</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Carpet Needed</div>
+                            <div class="result-value" id="carpet-needed">0 sq yd</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Linear Feet</div>
+                            <div class="result-value" id="linear-feet">0 ft</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Seams Required</div>
+                            <div class="result-value" id="seams-required">0</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Total Cost</div>
+                            <div class="result-value" id="total-cost">$0.00</div>
+                        </div>
+                    </div>
+                    <div class="cost-breakdown" id="cost-breakdown" style="display:none;">
+                        <h4>Cost Breakdown:</h4>
+                        <div class="breakdown-item">Carpet: <span id="carpet-cost">$0.00</span></div>
+                        <div class="breakdown-item">Padding: <span id="padding-cost">$0.00</span></div>
+                        <div class="breakdown-item">Installation: <span id="installation-cost">$0.00</span></div>
+                    </div>
+                    <button id="clear-btn" class="clear-btn">🗑️ Clear</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ad Space -->
+        <section class="ad-section">
+            <div class="ad-placeholder">
+                <div class="ad-placeholder-content">
+                    <span class="ad-icon">📢</span>
+                    <span class="ad-text">Advertisement Space</span>
+                    <span class="ad-size">728x90 Banner</span>
+                </div>
+            </div>
+            <ins class="adsbygoogle" style="display:none"
+                 data-ad-client="ca-pub-PLACEHOLDER"
+                 data-ad-slot="PLACEHOLDER"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </section>
+
+        <section class="content-section">
+            <article>
+                <h2>How to Calculate Carpet for Your Room</h2>
+                <p>Carpet is typically sold by the square yard, and installation requires careful planning to minimize waste and seams. Our calculator helps you determine exactly how much carpet you need.</p>
+
+                <h3>Carpet Measurement Basics</h3>
+                <ul>
+                    <li><strong>Square Yards:</strong> Carpet is priced per square yard (9 sq ft = 1 sq yd)</li>
+                    <li><strong>Roll Width:</strong> Most carpet comes in 12ft or 15ft widths</li>
+                    <li><strong>Seam Planning:</strong> Minimize seams for better appearance</li>
+                    <li><strong>Waste Factor:</strong> Add 5-10% for cutting and fitting</li>
+                </ul>
+
+                <h3>Common Carpet Roll Widths</h3>
+                <div class="conversion-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Roll Width</th>
+                                <th>Best For</th>
+                                <th>Typical Use</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>12 ft</td>
+                                <td>Standard rooms up to 12ft wide</td>
+                                <td>Most residential installations</td>
+                            </tr>
+                            <tr>
+                                <td>15 ft</td>
+                                <td>Wider rooms without seams</td>
+                                <td>Large living rooms, master bedrooms</td>
+                            </tr>
+                            <tr>
+                                <td>13.5 ft</td>
+                                <td>Broadloom carpet</td>
+                                <td>High-end residential</td>
+                            </tr>
+                            <tr>
+                                <td>6 ft</td>
+                                <td>Runners and narrow spaces</td>
+                                <td>Hallways, stairs</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Seam Planning Strategy</h3>
+                <p>Proper seam planning can save money and improve appearance:</p>
+                <ul>
+                    <li><strong>Avoid high-traffic seams:</strong> Place seams in low-traffic areas</li>
+                    <li><strong>Match pile direction:</strong> Ensure carpet pile runs the same direction</li>
+                    <li><strong>Plan for patterns:</strong> Pattern matching may increase waste</li>
+                    <li><strong>Consider room layout:</strong> Furniture placement can hide seams</li>
+                </ul>
+            </article>
+        </section>
+
+        <section class="faq-section">
+            <h2>Carpet Calculator FAQ</h2>
+
+            <div class="faq-item">
+                <h3>How do I convert square feet to square yards?</h3>
+                <p>Divide square feet by 9. For example, 180 sq ft ÷ 9 = 20 square yards.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>What's the difference between carpet and padding?</h3>
+                <p>Carpet is the visible floor covering. Padding (underlay) goes underneath for comfort, insulation, and carpet longevity.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>How much waste should I add for carpet?</h3>
+                <p>Add 5-10% for standard installations, 10-15% for complex room shapes or pattern matching.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Can I avoid seams in my carpet?</h3>
+                <p>If your room's width is less than the carpet roll width, you can avoid seams. For wider rooms, plan seam placement carefully.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <span class="logo-icon"><i class="fa-solid fa-ruler-combined"></i></span>
+                        <span class="logo-text">sq<sup>2</sup>ft</span>
+                    </a>
+                    <p class="footer-tagline">Fast, accurate flooring calculators with modern, mobile-first design.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" aria-label="Bluesky"><i class="fa-brands fa-bluesky"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Calculators</h4>
+                    <ul>
+                        <li><a href="index.html">Sq<sup>2</sup> Inches to Ft</a></li>
+                        <li><a href="tile-calculator.html">Tile Calculator</a></li>
+                        <li><a href="carpet-calculator.html">Carpet Calculator</a></li>
+                        <li><a href="hardwood-calculator.html">Hardwood Calculator</a></li>
+                        <li><a href="baseboard-calculator.html">Baseboard Calculator</a></li>
+                        <li><a href="subfloor-calculator.html">Subfloor Calculator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">How-to Guides</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; <span class="js-current-year"></span> sq<sup>2</sup>ft. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+      try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+    </script>
+    <script src="carpet-calculator.js"></script>
+</body>
+</html>
