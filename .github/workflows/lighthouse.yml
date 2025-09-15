@@ -22,12 +22,22 @@ jobs:
       - name: Run LHCI (homepage)
         run: |
           lhci collect --url=https://the-wise-men.github.io/sq2ft-calculators/ --numberOfRuns=1 --settings.emulatedFormFactor=mobile --settings.screenEmulation.mobile=true --settings.throttlingMethod=simulate --output=json --output-path=./lhr-home.json
-          lhci assert --assertions.category-performance=warn --assertions.category-seo=warn --assertions.category-accessibility=warn || true
+          lhci assert --config=lighthouserc.json
 
       - name: Run LHCI (tile calculator)
         run: |
           lhci collect --url=https://the-wise-men.github.io/sq2ft-calculators/tile-calculator.html --numberOfRuns=1 --settings.emulatedFormFactor=mobile --settings.screenEmulation.mobile=true --settings.throttlingMethod=simulate --output=json --output-path=./lhr-tile.json
-          lhci assert --assertions.category-performance=warn --assertions.category-seo=warn --assertions.category-accessibility=warn || true
+          lhci assert --config=lighthouserc.json
+
+      - name: Run LHCI (homepage desktop)
+        run: |
+          lhci collect --url=https://the-wise-men.github.io/sq2ft-calculators/ --numberOfRuns=1 --settings.emulatedFormFactor=desktop --settings.screenEmulation.mobile=false --settings.throttlingMethod=simulate --output=json --output-path=./lhr-home-desktop.json
+          lhci assert --config=lighthouserc.json
+
+      - name: Run LHCI (tile calculator desktop)
+        run: |
+          lhci collect --url=https://the-wise-men.github.io/sq2ft-calculators/tile-calculator.html --numberOfRuns=1 --settings.emulatedFormFactor=desktop --settings.screenEmulation.mobile=false --settings.throttlingMethod=simulate --output=json --output-path=./lhr-tile-desktop.json
+          lhci assert --config=lighthouserc.json
 
       - name: Upload reports
         uses: actions/upload-artifact@v4
@@ -36,8 +46,10 @@ jobs:
           path: |
             lhr-home.json
             lhr-tile.json
+            lhr-home-desktop.json
+            lhr-tile-desktop.json
 
       - name: Summarize category scores
         run: |
-          node -e "const fs=require('fs'); const f=p=>JSON.parse(fs.readFileSync(p,'utf8')); const fmt=o=>Object.fromEntries(Object.entries(o).map(([k,v])=>[k,Math.round((v.score||0)*100)])); const h=f('lhr-home.json').categories; const t=f('lhr-tile.json').categories; console.log('Home:',fmt(h)); console.log('Tile:',fmt(t));"
+          node -e "const fs=require('fs'); const f=p=>JSON.parse(fs.readFileSync(p,'utf8')); const fmt=o=>Object.fromEntries(Object.entries(o).map(([k,v])=>[k,Math.round((v.score||0)*100)])); const h=f('lhr-home.json').categories; const t=f('lhr-tile.json').categories; const hd=f('lhr-home-desktop.json').categories; const td=f('lhr-tile-desktop.json').categories; console.log('Home (mobile):',fmt(h)); console.log('Tile (mobile):',fmt(t)); console.log('Home (desktop):',fmt(hd)); console.log('Tile (desktop):',fmt(td));"
 
