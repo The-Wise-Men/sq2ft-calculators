@@ -24,6 +24,21 @@ class TileCalculator {
             tilesPerBox: !!this.tilesPerBox
         });
 
+        // Check if any elements are missing
+        const missingElements = [];
+        if (!this.roomLength) missingElements.push('room-length');
+        if (!this.roomWidth) missingElements.push('room-width');
+        if (!this.tileLength) missingElements.push('tile-length');
+        if (!this.tileWidth) missingElements.push('tile-width');
+        if (!this.wasteFactor) missingElements.push('waste-factor');
+        if (!this.tilePrice) missingElements.push('tile-price');
+        if (!this.groutWidth) missingElements.push('grout-width');
+        if (!this.tilesPerBox) missingElements.push('tiles-per-box');
+        
+        if (missingElements.length > 0) {
+            console.error('Missing elements:', missingElements);
+        }
+
         this.setupPresetButtons();
         this.setupTileSpecificListeners();
     }
@@ -284,11 +299,14 @@ document.addEventListener('DOMContentLoaded', () => {
 // Export for testing
 // Initialize the calculator when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    try {
-        console.log('Initializing Tile Calculator...');
-        const calculator = new TileCalculator();
-        console.log('Tile Calculator initialized successfully:', calculator);
-    } catch (error) {
-        console.error('Failed to initialize Tile Calculator:', error);
-    }
+    // Add a small delay to ensure all elements are available
+    setTimeout(() => {
+        try {
+            console.log('Initializing Tile Calculator...');
+            const calculator = new TileCalculator();
+            console.log('Tile Calculator initialized successfully:', calculator);
+        } catch (error) {
+            console.error('Failed to initialize Tile Calculator:', error);
+        }
+    }, 100);
 });
