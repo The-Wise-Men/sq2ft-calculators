@@ -11,7 +11,6 @@ class CarpetCalculator {
         this.wasteFactor = document.getElementById('waste-factor');
         this.seamDirection = document.getElementById('seam-direction');
 
-        this.calculateBtn = document.getElementById('calculate-btn');
         this.clearBtn = document.getElementById('clear-btn');
 
         this.initializeEventListeners();

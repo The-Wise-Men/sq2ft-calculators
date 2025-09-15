@@ -39,19 +39,11 @@ class TileCalculator {
     }
 
     showLoading() {
-        const calculateBtn = document.getElementById('calculate-btn');
-        if (calculateBtn) {
-            calculateBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Calculate';
-            calculateBtn.disabled = true;
-        }
+        // Loading states removed - calculations happen automatically
     }
 
     hideLoading() {
-        const calculateBtn = document.getElementById('calculate-btn');
-        if (calculateBtn) {
-            calculateBtn.innerHTML = 'Calculate';
-            calculateBtn.disabled = false;
-        }
+        // Loading states removed - calculations happen automatically
     }
 
     showError(message) {

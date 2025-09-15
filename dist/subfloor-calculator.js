@@ -16,7 +16,6 @@ class SubfloorCalculator {
         this.underlaymentPrice = document.getElementById('underlayment-price');
         this.laborCost = document.getElementById('labor-cost');
 
-        this.calculateBtn = document.getElementById('calculate-btn');
         this.clearBtn = document.getElementById('clear-btn');
 
         this.initializeEventListeners();

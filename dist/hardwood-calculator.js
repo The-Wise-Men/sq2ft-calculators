@@ -13,7 +13,6 @@ class HardwoodCalculator {
         this.installationCost = document.getElementById('installation-cost');
         this.underlaymentCost = document.getElementById('underlayment-cost');
 
-        this.calculateBtn = document.getElementById('calculate-btn');
         this.clearBtn = document.getElementById('clear-btn');
 
         this.initializeEventListeners();

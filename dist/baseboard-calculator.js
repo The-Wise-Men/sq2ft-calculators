@@ -18,7 +18,6 @@ class BaseboardCalculator {
         this.paintPrimer = document.getElementById('paint-primer');
         this.laborCost = document.getElementById('labor-cost');
 
-        this.calculateBtn = document.getElementById('calculate-btn');
         this.clearBtn = document.getElementById('clear-btn');
 
         this.initializeEventListeners();
