@@ -24,7 +24,6 @@ class BaseboardCalculator {
     }
 
     initializeEventListeners() {
-        this.calculateBtn.addEventListener('click', () => this.calculate());
         this.clearBtn.addEventListener('click', () => this.clear());
 
         // Auto-calculate perimeter from dimensions

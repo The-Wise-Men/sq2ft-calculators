@@ -17,7 +17,6 @@ class CarpetCalculator {
     }
 
     initializeEventListeners() {
-        this.calculateBtn.addEventListener('click', () => this.calculate());
         this.clearBtn.addEventListener('click', () => this.clear());
 
         // Real-time calculation on input change
