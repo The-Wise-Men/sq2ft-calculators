@@ -2,6 +2,8 @@
 
 class TileCalculator {
     constructor() {
+        console.log('TileCalculator constructor called');
+        
         this.roomLength = document.getElementById('room-length');
         this.roomWidth = document.getElementById('room-width');
         this.tileLength = document.getElementById('tile-length');
@@ -11,8 +13,19 @@ class TileCalculator {
         this.groutWidth = document.getElementById('grout-width');
         this.tilesPerBox = document.getElementById('tiles-per-box');
 
+        console.log('Elements found:', {
+            roomLength: !!this.roomLength,
+            roomWidth: !!this.roomWidth,
+            tileLength: !!this.tileLength,
+            tileWidth: !!this.tileWidth
+        });
+
         this.setupPresetButtons();
         this.setupTileSpecificListeners();
+        
+        // Test calculation
+        console.log('Running test calculation...');
+        this.calculate();
     }
 
     setupTileSpecificListeners() {
@@ -44,6 +57,8 @@ class TileCalculator {
     }
 
     calculate() {
+        console.log('Calculate method called');
+        
         const roomL = this.getInputValue('room-length');
         const roomW = this.getInputValue('room-width');
         const tileL = this.getInputValue('tile-length');
@@ -51,6 +66,8 @@ class TileCalculator {
         const waste = this.getInputValue('waste-factor', 10);
         const price = this.getInputValue('tile-price');
         const grout = this.getInputValue('grout-width', 3);
+
+        console.log('Input values:', { roomL, roomW, tileL, tileW, waste, price, grout });
 
         if (roomL <= 0 || roomW <= 0 || tileL <= 0 || tileW <= 0) {
             this.showError('Please enter valid dimensions');
