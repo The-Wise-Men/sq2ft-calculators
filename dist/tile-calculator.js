@@ -60,7 +60,7 @@ class TileCalculator {
         [this.roomLength, this.roomWidth, this.tileLength, this.tileWidth,
          this.wasteFactor, this.tilePrice, this.groutWidth].forEach(input => {
             if (input) {
-                input.addEventListener('input', () => this.handleCalculate());
+                input.addEventListener('input', () => this.calculate());
             }
         });
 
