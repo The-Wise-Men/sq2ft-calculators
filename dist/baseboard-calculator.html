@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free baseboard and trim calculator - Calculate linear feet needed, corners, waste factor, and material costs for baseboards, crown molding, and trim.">
+    <meta name="keywords" content="baseboard calculator, trim calculator, molding calculator, linear feet calculator, crown molding calculator, quarter round calculator">
+    <meta name="author" content="sq2ft">
+    <meta name="robots" content="index, follow">
+
+    <title>Baseboard & Trim Calculator - Linear Feet, Corners & Cost Calculator | sq2ft</title>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Baseboard & Trim Calculator",
+        "description": "Calculate baseboard, trim, and molding needs including linear feet, corners, and costs",
+        "url": "https://sq2ft.com/baseboard-calculator",
+        "applicationCategory": "UtilityApplication",
+        "featureList": [
+            "Linear feet calculation",
+            "Corner and miter calculations",
+            "Multiple trim types",
+            "Waste factor planning",
+            "Material cost estimation"
+        ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.2/css/hover-min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <script async type="module" crossorigin src="/assets/baseboard-DznBpf4Z.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/styles-RRqeZx1v.css">
+  <script type="module">import.meta.url;import("_").catch(()=>1);(async function*(){})().next();if(location.protocol!="file:"){window.__vite_is_modern_browser=true}</script>
+  <script type="module">!function(){if(window.__vite_is_modern_browser)return;console.warn("vite: loading legacy chunks, syntax error above and the same error below should be ignored");var e=document.getElementById("vite-legacy-polyfill"),n=document.createElement("script");n.src=e.src,n.onload=function(){System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))},document.body.appendChild(n)}();</script>
+<link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script></head>
+<body>
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon"><i class="fa-solid fa-ruler-combined"></i></span>
+                    <span class="logo-text">sq<sup>2</sup>ft</span>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Calculators</a>
+                    <div class="dropdown-menu">
+                        <a href="index.html">Sq<sup>2</sup> Inches to Ft</a>
+                        <a href="tile-calculator.html">Tile Calculator</a>
+                        <a href="carpet-calculator.html">Carpet Calculator</a>
+                        <a href="hardwood-calculator.html">Hardwood Calculator</a>
+                        <a href="baseboard-calculator.html">Baseboard Calculator</a>
+                        <a href="subfloor-calculator.html">Subfloor Calculator</a>
+                    </div>
+                </div>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <div class="mobile-ad-space">
+                    <div class="mobile-ad-placeholder">📱 Mobile Ad Space - 320x100</div>
+                </div>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <!-- Header content removed -->
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Small Ad Banner -->
+        <section class="top-ad-section">
+            <div class="ad-placeholder small-ad">
+                <div class="ad-placeholder-content">
+                    <span class="ad-icon"><i class="fa-solid fa-bullhorn"></i></span>
+                    <span class="ad-text">Small Banner Ad</span>
+                    <span class="ad-size">468x60</span>
+                </div>
+            </div>
+            <ins class="adsbygoogle" style="display:none"
+                 data-ad-client="ca-pub-PLACEHOLDER"
+                 data-ad-slot="PLACEHOLDER"
+                 data-ad-format="banner"
+                 data-ad-width="468"
+                 data-ad-height="60"></ins>
+        </section>
+        <section class="calculator-section">
+            <div class="page-title">
+                <h1><i class="fa-solid fa-ruler" style="margin-right:0.5rem"></i> Baseboard & Trim Calculator</h1>
+                <p class="subtitle">Calculate linear feet, corners, and material costs</p>
+
+                <!-- Calculator Navigation inside title box -->
+                <nav class="calculator-nav">
+                    <a href="index.html">Sq<sup>2</sup> Inches to Ft</a>
+                    <a href="tile-calculator.html">Tile Calculator</a>
+                    <a href="carpet-calculator.html">Carpet Calculator</a>
+                    <a href="hardwood-calculator.html">Hardwood Calculator</a>
+                    <a href="baseboard-calculator.html" class="active">Baseboard Calculator</a>
+                    <a href="subfloor-calculator.html">Subfloor Calculator</a>
+                </nav>
+            </div>
+            <div class="calculator-card">
+                <div class="input-section">
+                    <div class="input-group">
+                        <h3>Room Measurements</h3>
+                        <div class="input-row">
+                            <div class="input-wrapper">
+                                <label for="room-perimeter">Room Perimeter (ft)</label>
+                                <input type="number" id="room-perimeter" step="0.5" min="0" placeholder="44">
+                                <small>Or calculate from dimensions below</small>
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-wrapper">
+                                <label for="room-length">Length (ft)</label>
+                                <input type="number" id="room-length" step="0.25" min="0" placeholder="12">
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="room-width">Width (ft)</label>
+                                <input type="number" id="room-width" step="0.25" min="0" placeholder="10">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <h3>Openings & Obstacles</h3>
+                        <div class="input-row">
+                            <div class="input-wrapper">
+                                <label for="door-width">Door Openings Total Width (ft)</label>
+                                <input type="number" id="door-width" step="0.25" min="0" value="6" placeholder="6">
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="window-width">Window Openings Total Width (ft)</label>
+                                <input type="number" id="window-width" step="0.25" min="0" value="0" placeholder="0">
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-wrapper">
+                                <label for="other-openings">Other Openings (ft)</label>
+                                <input type="number" id="other-openings" step="0.25" min="0" value="0" placeholder="0">
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="corners">Number of Corners</label>
+                                <input type="number" id="corners" step="1" min="0" value="4" placeholder="4">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <h3>Trim Specifications</h3>
+                        <div class="input-row">
+                            <div class="input-wrapper">
+                                <label for="trim-type">Trim Type</label>
+                                <select id="trim-type">
+                                    <option value="baseboard" selected>Baseboard</option>
+                                    <option value="crown">Crown Molding</option>
+                                    <option value="chair-rail">Chair Rail</option>
+                                    <option value="quarter-round">Quarter Round</option>
+                                    <option value="shoe-molding">Shoe Molding</option>
+                                    <option value="casing">Door/Window Casing</option>
+                                </select>
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="trim-length">Standard Length (ft)</label>
+                                <select id="trim-length">
+                                    <option value="8">8 ft</option>
+                                    <option value="10">10 ft</option>
+                                    <option value="12" selected>12 ft</option>
+                                    <option value="16">16 ft</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-wrapper">
+                                <label for="price-per-foot">Price per Linear Foot ($)</label>
+                                <input type="number" id="price-per-foot" step="0.01" min="0" placeholder="2.50">
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="waste-factor">Waste Factor (%)</label>
+                                <input type="number" id="waste-factor" step="1" min="0" max="50" value="10" placeholder="10">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <h3>Additional Materials</h3>
+                        <div class="input-row">
+                            <div class="input-wrapper">
+                                <label for="nails-screws">Nails/Screws Cost ($)</label>
+                                <input type="number" id="nails-screws" step="0.01" min="0" placeholder="15.00">
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="caulk-cost">Caulk & Filler ($)</label>
+                                <input type="number" id="caulk-cost" step="0.01" min="0" placeholder="12.00">
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-wrapper">
+                                <label for="paint-primer">Paint & Primer ($)</label>
+                                <input type="number" id="paint-primer" step="0.01" min="0" placeholder="25.00">
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="labor-cost">Labor (per linear ft)</label>
+                                <input type="number" id="labor-cost" step="0.25" min="0" placeholder="3.50">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="calculate-btn" class="convert-btn">📏 Calculate Trim Needed</button>
+                </div>
+
+                <div class="result-section">
+                    <div class="result-header">Calculation Results</div>
+                    <div class="results-grid">
+                        <div class="result-item">
+                            <div class="result-label">Linear Feet Needed</div>
+                            <div class="result-value" id="linear-feet-needed">0 ft</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">With Waste Factor</div>
+                            <div class="result-value" id="linear-feet-waste">0 ft</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Pieces Needed</div>
+                            <div class="result-value" id="pieces-needed">0 pieces</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Corner Cuts</div>
+                            <div class="result-value" id="corner-cuts">0 cuts</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Miter Cuts</div>
+                            <div class="result-value" id="miter-cuts">0 cuts</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">Total Project Cost</div>
+                            <div class="result-value" id="total-cost">$0.00</div>
+                        </div>
+                    </div>
+                    <div class="cost-breakdown" id="cost-breakdown" style="display:none;">
+                        <h4>Cost Breakdown:</h4>
+                        <div class="breakdown-item">Trim Material: <span id="trim-cost">$0.00</span></div>
+                        <div class="breakdown-item">Fasteners: <span id="fastener-cost">$0.00</span></div>
+                        <div class="breakdown-item">Caulk & Filler: <span id="caulk-total">$0.00</span></div>
+                        <div class="breakdown-item">Paint & Primer: <span id="paint-total">$0.00</span></div>
+                        <div class="breakdown-item">Labor: <span id="labor-total">$0.00</span></div>
+                    </div>
+                    <button id="clear-btn" class="clear-btn">🗑️ Clear</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ad Space -->
+        <section class="ad-section">
+            <div class="ad-placeholder">
+                <div class="ad-placeholder-content">
+                    <span class="ad-icon">📢</span>
+                    <span class="ad-text">Advertisement Space</span>
+                    <span class="ad-size">728x90 Banner</span>
+                </div>
+            </div>
+            <ins class="adsbygoogle" style="display:none"
+                 data-ad-client="ca-pub-PLACEHOLDER"
+                 data-ad-slot="PLACEHOLDER"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </section>
+
+        <section class="content-section">
+            <article>
+                <h2>How to Calculate Baseboard and Trim Needs</h2>
+                <p>Installing baseboards and trim requires careful measurement and planning. Our calculator helps you determine linear footage, corner cuts, and material costs.</p>
+
+                <h3>Measuring for Trim</h3>
+                <ol>
+                    <li><strong>Measure perimeter:</strong> Add up all wall lengths where trim will be installed</li>
+                    <li><strong>Subtract openings:</strong> Deduct door and window openings</li>
+                    <li><strong>Count corners:</strong> Each corner requires special cuts and may add waste</li>
+                    <li><strong>Add waste factor:</strong> 10-15% for straight runs, 15-20% for complex layouts</li>
+                </ol>
+
+                <h3>Common Trim Types and Uses</h3>
+                <div class="conversion-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Trim Type</th>
+                                <th>Typical Height</th>
+                                <th>Best Use</th>
+                                <th>Waste Factor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Baseboard</td>
+                                <td>3" - 6"</td>
+                                <td>Wall-floor transition</td>
+                                <td>10-15%</td>
+                            </tr>
+                            <tr>
+                                <td>Crown Molding</td>
+                                <td>3" - 8"</td>
+                                <td>Wall-ceiling transition</td>
+                                <td>15-20%</td>
+                            </tr>
+                            <tr>
+                                <td>Chair Rail</td>
+                                <td>2" - 4"</td>
+                                <td>Mid-wall decoration</td>
+                                <td>10-15%</td>
+                            </tr>
+                            <tr>
+                                <td>Quarter Round</td>
+                                <td>¾" - 1"</td>
+                                <td>Covers gaps at floor</td>
+                                <td>15-20%</td>
+                            </tr>
+                            <tr>
+                                <td>Shoe Molding</td>
+                                <td>½" - ¾"</td>
+                                <td>Base of baseboard</td>
+                                <td>15-20%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Corner and Miter Cut Guide</h3>
+                <ul>
+                    <li><strong>Inside Corners:</strong> Use coped joints for professional appearance</li>
+                    <li><strong>Outside Corners:</strong> 45° miter cuts, may need adjustment</li>
+                    <li><strong>Crown Molding:</strong> Compound miter cuts required</li>
+                    <li><strong>Scarf Joints:</strong> For joining pieces along straight walls</li>
+                </ul>
+
+                <h3>Installation Tips</h3>
+                <ul>
+                    <li><strong>Acclimate Material:</strong> Let trim adjust to room humidity</li>
+                    <li><strong>Pre-finish:</strong> Prime and paint before installation when possible</li>
+                    <li><strong>Nail Placement:</strong> Into studs for secure attachment</li>
+                    <li><strong>Caulk Gaps:</strong> Fill nail holes and gaps before final paint</li>
+                </ul>
+            </article>
+        </section>
+
+        <section class="faq-section">
+            <h2>Baseboard & Trim FAQ</h2>
+
+            <div class="faq-item">
+                <h3>How do I measure for baseboard in an irregular room?</h3>
+                <p>Measure each wall section separately, including alcoves and built-ins. Add measurements together and subtract door openings.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>What's the difference between coped and mitered inside corners?</h3>
+                <p>Coped joints follow the profile of the trim and hide gaps better. Mitered corners are 45° cuts that meet at the corner.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>How much waste should I add for trim?</h3>
+                <p>Add 10-15% for simple rooms, 15-20% for rooms with many corners or complex layouts.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Can I install baseboard over carpet?</h3>
+                <p>Install baseboard after hardwood/tile but before carpet. Use shoe molding to cover the gap with carpet.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <span class="logo-icon"><i class="fa-solid fa-ruler-combined"></i></span>
+                        <span class="logo-text">sq<sup>2</sup>ft</span>
+                    </a>
+                    <p class="footer-tagline">Fast, accurate flooring calculators with modern, mobile-first design.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" aria-label="Bluesky"><i class="fa-brands fa-bluesky"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Calculators</h4>
+                    <ul>
+                        <li><a href="index.html">Sq<sup>2</sup> Inches to Ft</a></li>
+                        <li><a href="tile-calculator.html">Tile Calculator</a></li>
+                        <li><a href="carpet-calculator.html">Carpet Calculator</a></li>
+                        <li><a href="hardwood-calculator.html">Hardwood Calculator</a></li>
+                        <li><a href="baseboard-calculator.html">Baseboard Calculator</a></li>
+                        <li><a href="subfloor-calculator.html">Subfloor Calculator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">How-to Guides</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; <span class="js-current-year"></span> sq<sup>2</sup>ft. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.min.js"
+            onerror="console.log('AOS failed to load from CDN'); window.AOS = null;"></script>
+    <script src="script.js"></script>
+    <script>
+      try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+    </script>
+    <script src="baseboard-calculator.js"></script>
+  <script nomodule>!function(){var e=document,t=e.createElement("script");if(!("noModule"in t)&&"onbeforeload"in t){var n=!1;e.addEventListener("beforeload",(function(e){if(e.target===t)n=!0;else if(!e.target.hasAttribute("nomodule")||!n)return;e.preventDefault()}),!0),t.type="module",t.src=".",e.head.appendChild(t),t.remove()}}();</script>
+  <script nomodule crossorigin id="vite-legacy-polyfill" src="/assets/polyfills-legacy-Bj7NGYSK.js"></script>
+  <script nomodule crossorigin id="vite-legacy-entry" data-src="/assets/baseboard-legacy-B_2HGgH3.js">System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))</script>
+</body>
+</html>

@@ -23,10 +23,13 @@
     "predeploy": "npm run test && npm run lint && npm run build"
   },
   "devDependencies": {
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.8.0",
     "@vitejs/plugin-legacy": "^5.2.0",
     "@vitest/ui": "^1.0.0",
     "eslint": "^8.57.0",
     "eslint-plugin-html": "^7.1.0",
+    "jsdom": "^27.0.0",
     "prettier": "^3.1.1",
     "vite": "^5.0.0",
     "vite-plugin-pwa": "^0.17.0",
@@ -34,8 +37,8 @@
     "workbox-window": "^7.0.0"
   },
   "dependencies": {
-    "aos": "^2.3.4",
-    "animate.css": "^4.1.1"
+    "animate.css": "^4.1.1",
+    "aos": "^2.3.4"
   },
   "keywords": [
     "calculator",
