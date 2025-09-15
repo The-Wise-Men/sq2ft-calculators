@@ -815,6 +815,59 @@ document.addEventListener('DOMContentLoaded', () => {
         const y = new Date().getFullYear();
         yearEls.forEach(el => { el.textContent = y; });
     } catch (e) {}
+
+    // Contact form handling (client-side only)
+    try {
+        const form = document.getElementById('contact-form');
+        if (form) {
+            const nameEl = form.querySelector('#name');
+            const emailEl = form.querySelector('#email');
+            const messageEl = form.querySelector('#message');
+            const statusEl = document.getElementById('contact-status');
+
+            const validateEmail = (value) => /.+@.+\..+/.test(String(value).toLowerCase());
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                statusEl.className = 'validation-message';
+                statusEl.textContent = '';
+
+                const okName = validateInput(nameEl, { required: true, type: 'text' });
+                const okEmail = validateInput(emailEl, { required: true, type: 'text', customMessage: 'Enter a valid email' }) && validateEmail(emailEl.value);
+                const okMsg = !!messageEl.value && messageEl.value.trim().length >= 10;
+
+                if (!okName || !okEmail || !okMsg) {
+                    if (!okMsg) {
+                        messageEl.classList.add('error');
+                        let m = messageEl.closest('.input-wrapper')?.querySelector('.validation-message');
+                        if (!m) {
+                            m = document.createElement('div');
+                            m.className = 'validation-message';
+                            messageEl.closest('.input-wrapper')?.appendChild(m);
+                        }
+                        m.textContent = 'Please enter at least 10 characters';
+                        m.classList.add('error');
+                    }
+                    statusEl.textContent = 'Please correct the highlighted fields.';
+                    statusEl.classList.add('error');
+                    return;
+                }
+
+                // Obfuscated mailto to reduce scraping
+                const user = 'support';
+                const domain = 'sq2ft.com';
+                const to = `${user}@${domain}`;
+                const subject = encodeURIComponent(`[sq2ft] Contact from ${nameEl.value.trim()}`);
+                const body = encodeURIComponent(`${messageEl.value.trim()}\n\nFrom: ${nameEl.value.trim()} <${emailEl.value.trim()}>`);
+                const href = `mailto:${to}?subject=${subject}&body=${body}`;
+
+                // Provide feedback and open mail client
+                statusEl.textContent = 'Opening your email app…';
+                statusEl.classList.add('success');
+                window.location.href = href;
+            });
+        }
+    } catch (_) {}
 });
 
 // Service Worker for PWA capabilities (optional)

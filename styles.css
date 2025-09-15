@@ -680,15 +680,15 @@ header {
 /* Content Sections */
 .content-section, .faq-section {
     padding: 1.5rem 0;
-    max-width: 800px;
+    max-width: 900px;
     margin: 1.25rem auto 0;
 }
 
 .content-section article {
     background: white;
-    padding: 2.75rem;
-    border-radius: 16px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    padding: 2.75rem 3rem; /* wider LR padding */
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
     margin-bottom: 2rem;
 }
 
@@ -748,9 +748,9 @@ tr:hover {
 /* FAQ Section */
 .faq-section {
     background: white;
-    border-radius: 16px;
-    padding: 2.75rem;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 18px;
+    padding: 2.75rem 3rem; /* wider LR padding */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
 }
 
 .faq-item {
@@ -973,7 +973,7 @@ footer a:hover {
     }
 
     .content-section article, .faq-section {
-        padding: 1.5rem;
+        padding: 1.5rem 1.75rem; /* maintain a bit more LR padding on mobile */
         margin: 0 1rem;
     }
 
@@ -1301,6 +1301,18 @@ main {
 .input-wrapper select.valid {
     border-color: #28a745;
     box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+}
+
+/* Contact form enhancements */
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+}
+
+#contact-form button[type="submit"] {
+    border: 1px solid var(--primary);
+    background: var(--primary);
+    color: white;
 }
 
 .validation-message {

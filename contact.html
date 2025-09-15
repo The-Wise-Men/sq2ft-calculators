@@ -51,14 +51,38 @@
         <section class="content-section">
             <article>
                 <h2>Get in touch</h2>
-                <p>Email: <a href="mailto:support@sq2ft.com">support@sq2ft.com</a></p>
+                <p>Use the form below and we’ll get back to you as soon as possible.</p>
+
+                <form id="contact-form" novalidate>
+                    <div class="input-row">
+                        <div class="input-wrapper">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required placeholder="Your name">
+                        </div>
+                        <div class="input-wrapper">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required placeholder="you@example.com" inputmode="email" autocomplete="email">
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-wrapper" style="grid-column: 1 / -1;">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="6" required placeholder="How can we help?" style="border-radius: 12px; padding: 1rem; resize: vertical;"></textarea>
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-wrapper" style="grid-column: 1 / -1;">
+                            <button type="submit" class="copy-all-btn" style="display:inline-flex; align-items:center; gap:8px;">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                Send message
+                            </button>
+                            <div id="contact-status" class="validation-message" aria-live="polite" style="margin-top:0.75rem"></div>
+                        </div>
+                    </div>
+                </form>
+
+                <h2>Other</h2>
                 <p>GitHub: <a href="https://github.com/The-Wise-Men/sq2ft-calculators" target="_blank" rel="noopener">The‑Wise‑Men/sq2ft‑calculators</a></p>
-
-                <h2>Press & Partnerships</h2>
-                <p>For media, sponsorships, or integrations, contact <a href="mailto:press@sq2ft.com">press@sq2ft.com</a>.</p>
-
-                <h2>Support</h2>
-                <p>Found a bug or have a feature request? Open an issue on GitHub or email us with details, screenshots, and steps to reproduce.</p>
             </article>
         </section>
     </main>
