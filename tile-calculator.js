@@ -144,9 +144,12 @@ class TileCalculator {
 
 // Initialize the calculator when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    try {
-        new TileCalculator();
-    } catch (error) {
-        console.error('Failed to initialize Tile Calculator:', error);
-    }
+    // Add a small delay to ensure all elements are available
+    setTimeout(() => {
+        try {
+            new TileCalculator();
+        } catch (error) {
+            console.error('Failed to initialize Tile Calculator:', error);
+        }
+    }, 100);
 });
