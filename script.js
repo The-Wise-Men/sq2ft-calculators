@@ -816,15 +816,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Service Worker for PWA capabilities (optional)
 if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sq2ft-calculators/sw.js')
-            .then(registration => {
-                console.log('SW registered: ', registration);
-            })
-            .catch(registrationError => {
-                console.log('SW registration failed: ', registrationError);
-            });
-    });
+    // Temporarily disable SW registration to eliminate stale caching while we stabilize deploy
+    console.log('SW registration disabled by app config');
 }
 
 // Add keyboard shortcuts

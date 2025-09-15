@@ -37,6 +37,21 @@
 </head>
 <body>
     <script>
+        (async () => {
+            const url = new URL(window.location.href);
+            if (url.searchParams.get('reset') === '1' && 'serviceWorker' in navigator) {
+                try {
+                    const regs = await navigator.serviceWorker.getRegistrations();
+                    await Promise.all(regs.map(r => r.unregister()));
+                    const keys = await caches.keys();
+                    await Promise.all(keys.map(k => caches.delete(k)));
+                    url.searchParams.delete('reset');
+                    location.replace(url.toString());
+                } catch (e) { console.log('SW/cache reset error', e); }
+            }
+        })();
+    </script>
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
             document.documentElement.classList.add('page-ready');
         });

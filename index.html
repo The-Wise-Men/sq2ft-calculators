@@ -58,7 +58,7 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-PLACEHOLDER"
             crossorigin="anonymous"></script>
 
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hover.css@2.3.2/css/hover-min.css">
@@ -78,6 +78,24 @@
     <!-- Vite handles preloading automatically -->
 </head>
 <body>
+    <script>
+        (async () => {
+            const url = new URL(window.location.href);
+            if (url.searchParams.get('reset') === '1' && 'serviceWorker' in navigator) {
+                try {
+                    const regs = await navigator.serviceWorker.getRegistrations();
+                    await Promise.all(regs.map(r => r.unregister()));
+                    const keys = await caches.keys();
+                    await Promise.all(keys.map(k => caches.delete(k)));
+                    // Remove the flag and reload once with a clean state
+                    url.searchParams.delete('reset');
+                    location.replace(url.toString());
+                } catch (e) {
+                    console.log('SW/cache reset error', e);
+                }
+            }
+        })();
+    </script>
     <!-- Skip Navigation for Accessibility -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
