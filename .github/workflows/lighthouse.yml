@@ -45,42 +45,50 @@ jobs:
 
       - name: Run LHCI (homepage)
         run: |
-          lhci collect --url=https://the-wise-men.github.io/sq2ft-calculators/ --numberOfRuns=1 --settings.formFactor=mobile --settings.screenEmulation.mobile=true --settings.throttlingMethod=simulate --output=json --output-path=./lhr-home.json
+          lhci collect --url=https://the-wise-men.github.io/sq2ft-calculators/ --numberOfRuns=1 --settings.formFactor=mobile --settings.screenEmulation.mobile=true --settings.throttlingMethod=simulate
+          cp "$(ls -t .lighthouseci/*.json | head -n 1)" lhr-home.json
           lhci assert --config=lighthouserc.json
 
       - name: Run LHCI (tile calculator)
         run: |
-          lhci collect --url=https://the-wise-men.github.io/sq2ft-calculators/tile-calculator.html --numberOfRuns=1 --settings.formFactor=mobile --settings.screenEmulation.mobile=true --settings.throttlingMethod=simulate --output=json --output-path=./lhr-tile.json
+          lhci collect --url=https://the-wise-men.github.io/sq2ft-calculators/tile-calculator.html --numberOfRuns=1 --settings.formFactor=mobile --settings.screenEmulation.mobile=true --settings.throttlingMethod=simulate
+          cp "$(ls -t .lighthouseci/*.json | head -n 1)" lhr-tile.json
           lhci assert --config=lighthouserc.json
 
       - name: Run LHCI (homepage desktop)
         run: |
-          lhci collect --url=https://the-wise-men.github.io/sq2ft-calculators/ --numberOfRuns=1 --settings.formFactor=desktop --settings.screenEmulation.mobile=false --settings.throttlingMethod=simulate --output=json --output-path=./lhr-home-desktop.json
+          lhci collect --url=https://the-wise-men.github.io/sq2ft-calculators/ --numberOfRuns=1 --settings.formFactor=desktop --settings.screenEmulation.mobile=false --settings.throttlingMethod=simulate
+          cp "$(ls -t .lighthouseci/*.json | head -n 1)" lhr-home-desktop.json
           lhci assert --config=lighthouserc.json
 
       - name: Run LHCI (tile calculator desktop)
         run: |
-          lhci collect --url=https://the-wise-men.github.io/sq2ft-calculators/tile-calculator.html --numberOfRuns=1 --settings.formFactor=desktop --settings.screenEmulation.mobile=false --settings.throttlingMethod=simulate --output=json --output-path=./lhr-tile-desktop.json
+          lhci collect --url=https://the-wise-men.github.io/sq2ft-calculators/tile-calculator.html --numberOfRuns=1 --settings.formFactor=desktop --settings.screenEmulation.mobile=false --settings.throttlingMethod=simulate
+          cp "$(ls -t .lighthouseci/*.json | head -n 1)" lhr-tile-desktop.json
           lhci assert --config=lighthouserc.json
 
       - name: Run LHCI local (homepage mobile)
         run: |
-          lhci collect --url=http://localhost:4173/sq2ft-calculators/ --numberOfRuns=1 --settings.formFactor=mobile --settings.screenEmulation.mobile=true --settings.throttlingMethod=simulate --output=json --output-path=./lhr-home-local.json
+          lhci collect --url=http://localhost:4173/sq2ft-calculators/ --numberOfRuns=1 --settings.formFactor=mobile --settings.screenEmulation.mobile=true --settings.throttlingMethod=simulate
+          cp "$(ls -t .lighthouseci/*.json | head -n 1)" lhr-home-local.json
           lhci assert --config=lighthouserc.json
 
       - name: Run LHCI local (tile mobile)
         run: |
-          lhci collect --url=http://localhost:4173/sq2ft-calculators/tile-calculator.html --numberOfRuns=1 --settings.formFactor=mobile --settings.screenEmulation.mobile=true --settings.throttlingMethod=simulate --output=json --output-path=./lhr-tile-local.json
+          lhci collect --url=http://localhost:4173/sq2ft-calculators/tile-calculator.html --numberOfRuns=1 --settings.formFactor=mobile --settings.screenEmulation.mobile=true --settings.throttlingMethod=simulate
+          cp "$(ls -t .lighthouseci/*.json | head -n 1)" lhr-tile-local.json
           lhci assert --config=lighthouserc.json
 
       - name: Run LHCI local (homepage desktop)
         run: |
-          lhci collect --url=http://localhost:4173/sq2ft-calculators/ --numberOfRuns=1 --settings.formFactor=desktop --settings.screenEmulation.mobile=false --settings.throttlingMethod=simulate --output=json --output-path=./lhr-home-desktop-local.json
+          lhci collect --url=http://localhost:4173/sq2ft-calculators/ --numberOfRuns=1 --settings.formFactor=desktop --settings.screenEmulation.mobile=false --settings.throttlingMethod=simulate
+          cp "$(ls -t .lighthouseci/*.json | head -n 1)" lhr-home-desktop-local.json
           lhci assert --config=lighthouserc.json
 
       - name: Run LHCI local (tile desktop)
         run: |
-          lhci collect --url=http://localhost:4173/sq2ft-calculators/tile-calculator.html --numberOfRuns=1 --settings.formFactor=desktop --settings.screenEmulation.mobile=false --settings.throttlingMethod=simulate --output=json --output-path=./lhr-tile-desktop-local.json
+          lhci collect --url=http://localhost:4173/sq2ft-calculators/tile-calculator.html --numberOfRuns=1 --settings.formFactor=desktop --settings.screenEmulation.mobile=false --settings.throttlingMethod=simulate
+          cp "$(ls -t .lighthouseci/*.json | head -n 1)" lhr-tile-desktop-local.json
           lhci assert --config=lighthouserc.json
 
       - name: Upload reports
@@ -96,6 +104,8 @@ jobs:
             lhr-tile-local.json
             lhr-home-desktop-local.json
             lhr-tile-desktop-local.json
+            .lighthouseci/*.json
+            .lighthouseci/*.html
 
       - name: Summarize category scores
         run: |
